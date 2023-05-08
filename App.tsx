@@ -89,6 +89,16 @@ function App(): JSX.Element {
 </View>
 
 
+<View style={{flex:4, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} > 
+   <TouchableOpacity style={{width:77, height:44, marginLeft:20}}><Button color={'mediumslateblue'} title='Send'></Button></TouchableOpacity>
+   <TextInput
+          placeholder="enter email"
+          placeholderTextColor={"white"}
+          keyboardAppearance="default"
+          style={styles.placeholder}
+        ></TextInput>
+</View>
+
 
      </View>
     
