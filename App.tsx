@@ -100,6 +100,13 @@ function App(): JSX.Element {
 </View>
 
 
+<View style={{flex:5, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} > 
+   <TouchableOpacity style={{width:110, height:44, marginLeft:20}}><Button color={'slateblue'} title='Download'></Button></TouchableOpacity>
+   
+</View>
+
+
+
      </View>
     
   );
