@@ -14,6 +14,8 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
+  TouchableOpacity,
   useColorScheme,
   View,
 } from 'react-native';
@@ -76,9 +78,18 @@ function App(): JSX.Element {
       {color:'blueviolet', backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start', marginLeft:50},]
       }>{'\t'}Discord pic generator</Text>     
 
-   <View style={{flex:3, backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start'}} /> 
-   <Button color={'darkorchid'} title='Generate'></Button>
-    
+   <View style={{flex:3, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} > 
+   <TouchableOpacity style={{width:110, height:44, marginLeft:20}}><Button color={'darkorchid'} title='Generate'></Button></TouchableOpacity>
+   <TextInput
+          placeholder="enter image url"
+          placeholderTextColor={"white"}
+          keyboardAppearance="default"
+          style={styles.placeholder}
+        ></TextInput>
+</View>
+
+
+
      </View>
     
   );
@@ -104,6 +115,16 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  placeholder: {
+    color: "white",
+    height: 40,
+    width: 214,
+    backgroundColor: "rgba(14,14,14,1)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,1)",
+    justifyContent:'center',
+    marginLeft:30
   },
 });
 
