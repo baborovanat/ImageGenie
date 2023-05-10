@@ -67,16 +67,13 @@ function App(): JSX.Element {
   };
 
   return (
-    // Try removing the `flex: 1` on the parent View.
-    // The parent will not have dimensions, so the children can't expand.
-    // What if you add `height: 300` instead of `flex: 1`?
     <View style={{flex: 1, backgroundColor:'black'}}>
       <View style={{flex: 1, backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start'}} /> 
-      <Text style={{color:'blue', backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start', marginLeft:15}}>{'\t'}Back</Text>     
+      <Text style={{color:'blue', fontSize:17, backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start', marginLeft:15}}>{'\t'}Back</Text>     
    
-      <View style={{flex: 2, backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start'}} /> 
+      <View style={{flex: 2, backgroundColor: 'black', flexDirection:"row", alignContent:'center', justifyContent:'center'}} /> 
       <Text style={[styles.sectionTitle,
-      {color:'blueviolet', backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start', marginLeft:50},]
+      {color:'blueviolet', backgroundColor: 'black', flexDirection:"row", alignContent:'center', justifyContent:'center', marginLeft: 40, marginBottom:50},]
       }>{'\t'}Discord pic generator</Text>     
 
    <View style={{flex:3, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} > 
@@ -96,7 +93,7 @@ function App(): JSX.Element {
          ></Image>
 
          
-<View style={{flex:4, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} > 
+<View style={{flex:4, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start", marginTop:40}} > 
    <TouchableOpacity style={{width:77, height:44, marginLeft:20}}><Button color={'mediumslateblue'} title='Send'></Button></TouchableOpacity>
    <TextInput
           placeholder="enter email"
@@ -107,8 +104,8 @@ function App(): JSX.Element {
 </View>
 
 
-<View style={{flex:5, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} > 
-   <TouchableOpacity style={{width:110, height:44, marginLeft:20}}><Button color={'slateblue'} title='Download'></Button></TouchableOpacity>
+<View style={{flex:5, backgroundColor: 'black', flexDirection:"row", alignContent:"center", justifyContent:"center"}} > 
+   <TouchableOpacity style={{width:110, height:44, marginRight:20}}><Button color={'slateblue'} title='Download'></Button></TouchableOpacity>
    
 </View>
 
@@ -128,7 +125,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: '600',
     backgroundColor:'black'
   },
@@ -151,9 +148,11 @@ const styles = StyleSheet.create({
     marginLeft:30
   },
   image: {
-    width: 237,
-    height: 218,
-    marginLeft: 45,
+    width: 260,
+    height: 260,
+    alignContent:'center',
+    justifyContent:'center',
+    alignSelf:'center'
    // marginTop: 300,
     //backgroundColor: "red"
   },
