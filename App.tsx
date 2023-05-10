@@ -9,6 +9,7 @@ import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   Button,
+  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -88,7 +89,13 @@ function App(): JSX.Element {
         ></TextInput>
 </View>
 
+<Image
+           source={require('./img/stitch.jpg')}
+           resizeMode="contain"
+           style={styles.image}
+         ></Image>
 
+         
 <View style={{flex:4, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} > 
    <TouchableOpacity style={{width:77, height:44, marginLeft:20}}><Button color={'mediumslateblue'} title='Send'></Button></TouchableOpacity>
    <TextInput
@@ -142,6 +149,13 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,1)",
     justifyContent:'center',
     marginLeft:30
+  },
+  image: {
+    width: 237,
+    height: 218,
+    marginLeft: 45,
+   // marginTop: 300,
+    //backgroundColor: "red"
   },
 });
 
