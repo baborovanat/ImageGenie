@@ -6,6 +6,8 @@
  */
 
 import React from 'react';
+import  { Component, useEffect, useState} from "react";
+import RNFetchBlob from "rn-fetch-blob";
 import type {PropsWithChildren} from 'react';
 import {
   Button,
@@ -60,11 +62,10 @@ function Section({children, title}: SectionProps): JSX.Element {
 }
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: 'black'
-  };
+
+
+  
 
   return (
     <View style={{flex: 1, backgroundColor:'black'}}>
@@ -73,7 +74,7 @@ function App(): JSX.Element {
    
       <View style={{flex: 2, backgroundColor: 'black', flexDirection:"row", alignContent:'center', justifyContent:'center'}} /> 
       <Text style={[styles.sectionTitle,
-      {color:'blueviolet', backgroundColor: 'black', flexDirection:"row", alignContent:'center', justifyContent:'center', marginLeft: 40, marginBottom:50},]
+      {color:'blueviolet', backgroundColor: 'black', flexDirection:"row", alignContent:'center', justifyContent:'center', marginLeft: 40, marginBottom:50, marginTop:-15},]
       }>{'\t'}Discord pic generator</Text>     
 
    <View style={{flex:3, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} > 
@@ -84,6 +85,18 @@ function App(): JSX.Element {
           keyboardAppearance="default"
           style={styles.placeholder}
         ></TextInput>
+</View>
+
+
+<View style={{ backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} >
+  <Text style={{fontSize:15, color:'mediumslateblue', backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start", justifyContent:'flex-start', marginLeft:19, marginBottom:20}}>Choose effect:</Text>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:13, marginTop:-10}}><Button color={'slateblue'} title='1'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:-10}}><Button color={'slateblue'} title='2'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:-10}}><Button color={'slateblue'} title='3'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:-10}}><Button color={'slateblue'} title='4'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:-10}}><Button color={'slateblue'} title='5'></Button></TouchableOpacity>
+
+
 </View>
 
 <Image
