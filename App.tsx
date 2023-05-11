@@ -28,6 +28,8 @@ import {
     TouchableWithoutFeedback,
     ImageBackground,
     ImageBackgroundComponent,
+    TextInputChangeEventData,
+    NativeSyntheticEvent,
 } from 'react-native';
 
 import {
@@ -72,6 +74,9 @@ function App(): JSX.Element {
 
   const [posts, setPosts] = useState<any>();
   const [image, setImage] = useState<string>();
+  const [message, setMessage] = useState<string>();
+ // const [inputVal, setVal] = useState('');
+  
 
   const fetchData = async function () {
     RNFetchBlob.fetch("POST",'https://v1.api.amethyste.moe/generate/wasted', 
@@ -79,9 +84,14 @@ function App(): JSX.Element {
     "Accept": 'application/json',
     'content-type': 'application/json',
     'Authorization': "Bearer a04af71fdc0bcfe01e5d9d33484931689a2385c2934ed15819981850cc0820388e756d77959e5a46981d3d05403cd85b3d6f8efa5b6ef1269d17959782417ae1"
+    
   },
+
   JSON.stringify({
-    url: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?cs=srgb&dl=pexels-pixabay-45201.jpg&fm=jpg'
+  
+    //url: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?cs=srgb&dl=pexels-pixabay-45201.jpg&fm=jpg'
+ 
+ url:(message?.toString)
   })).then((response) => {
   let base64Str = response.data;
   var imageBase64 = 'data:'+'png'+';base64,'+base64Str;
@@ -91,7 +101,9 @@ function App(): JSX.Element {
 
   }
   
+  
  
+  
 
 //obrazek bude zmenen po kliknuti na btn generate
 
@@ -111,11 +123,16 @@ function App(): JSX.Element {
    <TouchableOpacity
    style={{width:110, height:44, marginLeft:20}}><Button color={'darkorchid'} onPress={() => fetchData()}  title='Generate'></Button></TouchableOpacity>
    <TextInput 
+  
           placeholder="enter image url"
           placeholderTextColor={"white"}
           keyboardAppearance="default"
           style={styles.placeholder}
+          id='imgurl'
+         value={message}
+         onChangeText={(string) => setMessage(string)}
         ></TextInput>
+
         
 </View>
 
@@ -163,7 +180,7 @@ function App(): JSX.Element {
      </View>
 
 <View style={{width:'100%', height:80, backgroundColor:'black'}}>
-
+<Text style={{fontSize:15, color:'white'}}>{message}</Text>
 </View>
 
      </ScrollView>
