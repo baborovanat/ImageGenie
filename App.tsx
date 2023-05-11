@@ -75,8 +75,6 @@ function App(): JSX.Element {
   const [posts, setPosts] = useState<any>();
   const [image, setImage] = useState<string>();
   const [message, setMessage] = useState<string>();
- // const [inputVal, setVal] = useState('');
-  
 
   const fetchData = async function () {
     RNFetchBlob.fetch("POST",'https://v1.api.amethyste.moe/generate/wasted', 
@@ -88,10 +86,7 @@ function App(): JSX.Element {
   },
 
   JSON.stringify({
-  
-    //url: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?cs=srgb&dl=pexels-pixabay-45201.jpg&fm=jpg'
- 
- url:(message?.toString)
+ url: `${message}`
   })).then((response) => {
   let base64Str = response.data;
   var imageBase64 = 'data:'+'png'+';base64,'+base64Str;
@@ -151,7 +146,7 @@ function App(): JSX.Element {
 
 <ImageBackground source={require('./img/stitch.jpg')} style={styles.image}>
 <Image
-           source={{uri: image ?? ""}}
+           source={{uri: image ?? "" }}
            resizeMode="contain"
            style={styles.image}
            id='stitch'
