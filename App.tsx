@@ -218,7 +218,7 @@ function App(): JSX.Element {
 
 
 
-<View style={{ marginBottom:10, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} >
+<View style={{ marginBottom:20, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start",}} >
   <Text style={{fontSize:15, color:'mediumslateblue', backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start", justifyContent:'flex-start', marginLeft:19, marginBottom:20, marginTop:20}}>Choose effect:</Text>
   <TouchableOpacity style={{width:40, height:40, marginLeft:13,marginTop:15,}}><Button color={'slateblue'} onPress={() => fetchFilter3()} title='1'></Button></TouchableOpacity>
   <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} onPress={() => fetchFilter()} title='2'></Button></TouchableOpacity>
@@ -229,7 +229,7 @@ function App(): JSX.Element {
 
 </View>
 
-<ImageBackground source={require('./img/stitch.jpg')} style={styles.image}>
+<ImageBackground source={require('./img/stitch.jpg')} style={styles.bgimage}>
 <Image
            source={{uri: image ?? "" }}
            resizeMode="contain"
@@ -301,13 +301,18 @@ const styles = StyleSheet.create({
     marginLeft:30
   },
   image: {
-    width: 260,
-    height: 260,
+    width: 270,
+    height: 270,
     alignContent:'center',
     justifyContent:'center',
     alignSelf:'center'
-   // marginTop: 300,
-    //backgroundColor: "red"
+  },
+  bgimage: {
+    width: 240,
+    height: 240,
+    alignContent:'center',
+    justifyContent:'center',
+    alignSelf:'center'
   },
  
 });
