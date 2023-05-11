@@ -132,13 +132,14 @@ function App(): JSX.Element {
 
 </View>
 
+<ImageBackground source={require('./img/stitch.jpg')} style={styles.image}>
 <Image
            source={{uri: image ?? ""}}
            resizeMode="contain"
            style={styles.image}
            id='stitch'
          ></Image>
-
+</ImageBackground>
 
          
 <View style={{flex:4, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start", marginTop:40}} > 
