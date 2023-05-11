@@ -77,7 +77,7 @@ function App(): JSX.Element {
   const [message, setMessage] = useState<string>();
 
   const fetchData = async function () {
-    RNFetchBlob.fetch("POST",'https://v1.api.amethyste.moe/generate/wasted', 
+    RNFetchBlob.fetch("POST",'https://v1.api.amethyste.moe/generate/sharpen', 
    {
     "Accept": 'application/json',
     'content-type': 'application/json',
@@ -95,11 +95,96 @@ function App(): JSX.Element {
 })
 
   }
-  
-  
- 
-  
 
+  const fetchFilter = async function () {
+    RNFetchBlob.fetch("POST",'https://v1.api.amethyste.moe/generate/missionpassed', 
+    {
+     "Accept": 'application/json',
+     'content-type': 'application/json',
+     'Authorization': "Bearer a04af71fdc0bcfe01e5d9d33484931689a2385c2934ed15819981850cc0820388e756d77959e5a46981d3d05403cd85b3d6f8efa5b6ef1269d17959782417ae1"
+     
+   },
+ 
+   JSON.stringify({
+  url: `${message}`
+   })).then((response) => {
+   let base64Str = response.data;
+   var imageBase64 = 'data:'+'png'+';base64,'+base64Str;
+   setImage(imageBase64)
+ })
+  }
+
+  const fetchFilter1 = async function () {
+    RNFetchBlob.fetch("POST",'https://v1.api.amethyste.moe/generate/gay', 
+    {
+     "Accept": 'application/json',
+     'content-type': 'application/json',
+     'Authorization': "Bearer a04af71fdc0bcfe01e5d9d33484931689a2385c2934ed15819981850cc0820388e756d77959e5a46981d3d05403cd85b3d6f8efa5b6ef1269d17959782417ae1"
+     
+   },
+ 
+   JSON.stringify({
+  url: `${message}`
+   })).then((response) => {
+   let base64Str = response.data;
+   var imageBase64 = 'data:'+'png'+';base64,'+base64Str;
+   setImage(imageBase64)
+ })
+  }
+  
+  const fetchFilter2 = async function () {
+    RNFetchBlob.fetch("POST",'https://v1.api.amethyste.moe/generate/fire', 
+    {
+     "Accept": 'application/json',
+     'content-type': 'application/json',
+     'Authorization': "Bearer a04af71fdc0bcfe01e5d9d33484931689a2385c2934ed15819981850cc0820388e756d77959e5a46981d3d05403cd85b3d6f8efa5b6ef1269d17959782417ae1"
+     
+   },
+ 
+   JSON.stringify({
+  url: `${message}`
+   })).then((response) => {
+   let base64Str = response.data;
+   var imageBase64 = 'data:'+'png'+';base64,'+base64Str;
+   setImage(imageBase64)
+ })
+  }
+ 
+  const fetchFilter3 = async function () {
+    RNFetchBlob.fetch("POST",'https://v1.api.amethyste.moe/generate/wasted', 
+    {
+     "Accept": 'application/json',
+     'content-type': 'application/json',
+     'Authorization': "Bearer a04af71fdc0bcfe01e5d9d33484931689a2385c2934ed15819981850cc0820388e756d77959e5a46981d3d05403cd85b3d6f8efa5b6ef1269d17959782417ae1"
+     
+   },
+ 
+   JSON.stringify({
+  url: `${message}`
+   })).then((response) => {
+   let base64Str = response.data;
+   var imageBase64 = 'data:'+'png'+';base64,'+base64Str;
+   setImage(imageBase64)
+ })
+  }
+
+  const fetchFilter4 = async function () {
+    RNFetchBlob.fetch("POST",'https://v1.api.amethyste.moe/generate/posterize', 
+    {
+     "Accept": 'application/json',
+     'content-type': 'application/json',
+     'Authorization': "Bearer a04af71fdc0bcfe01e5d9d33484931689a2385c2934ed15819981850cc0820388e756d77959e5a46981d3d05403cd85b3d6f8efa5b6ef1269d17959782417ae1"
+     
+   },
+ 
+   JSON.stringify({
+  url: `${message}`
+   })).then((response) => {
+   let base64Str = response.data;
+   var imageBase64 = 'data:'+'png'+';base64,'+base64Str;
+   setImage(imageBase64)
+ })
+  }
 //obrazek bude zmenen po kliknuti na btn generate
 
   return (
@@ -135,11 +220,11 @@ function App(): JSX.Element {
 
 <View style={{ marginBottom:10, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} >
   <Text style={{fontSize:15, color:'mediumslateblue', backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start", justifyContent:'flex-start', marginLeft:19, marginBottom:20, marginTop:20}}>Choose effect:</Text>
-  <TouchableOpacity style={{width:40, height:40, marginLeft:13,marginTop:15,}}><Button color={'slateblue'} title='1'></Button></TouchableOpacity>
-  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} title='2'></Button></TouchableOpacity>
-  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} title='3'></Button></TouchableOpacity>
-  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} title='4'></Button></TouchableOpacity>
-  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} title='5'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:13,marginTop:15,}}><Button color={'slateblue'} onPress={() => fetchFilter3()} title='1'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} onPress={() => fetchFilter()} title='2'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} onPress={() => fetchFilter1()} title='3'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} onPress={() => fetchFilter2()} title='4'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} onPress={() => fetchFilter4()} title='5'></Button></TouchableOpacity>
 
 
 </View>
