@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+
 import  { Component, useEffect, useState} from "react";
 import RNFetchBlob from "rn-fetch-blob";
 import type {PropsWithChildren} from 'react';
@@ -25,6 +26,8 @@ import {
    Platform,
     KeyboardAvoidingView, 
     TouchableWithoutFeedback,
+    ImageBackground,
+    ImageBackgroundComponent,
 } from 'react-native';
 
 import {
@@ -34,9 +37,9 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
 type SectionProps = PropsWithChildren<{
   title: string;
+  
 }>;
 
 function Section({children, title}: SectionProps): JSX.Element {
@@ -67,9 +70,30 @@ function Section({children, title}: SectionProps): JSX.Element {
 
 function App(): JSX.Element {
 
+  const [posts, setPosts] = useState<any>();
+  const [image, setImage] = useState<string>();
 
+  const fetchData = async function () {
+    RNFetchBlob.fetch("POST",'https://v1.api.amethyste.moe/generate/wasted', 
+   {
+    "Accept": 'application/json',
+    'content-type': 'application/json',
+    'Authorization': "Bearer a04af71fdc0bcfe01e5d9d33484931689a2385c2934ed15819981850cc0820388e756d77959e5a46981d3d05403cd85b3d6f8efa5b6ef1269d17959782417ae1"
+  },
+  JSON.stringify({
+    url: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?cs=srgb&dl=pexels-pixabay-45201.jpg&fm=jpg'
+  })).then((response) => {
+  let base64Str = response.data;
+  var imageBase64 = 'data:'+'png'+';base64,'+base64Str;
+  setImage(imageBase64)
+  // Return base64 image
+})
 
+  }
   
+ 
+
+//obrazek bude zmenen po kliknuti na btn generate
 
   return (
 
@@ -84,8 +108,9 @@ function App(): JSX.Element {
       }>{'\t'}Discord pic generator</Text>     
 
    <View style={{flex:3, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} > 
-   <TouchableOpacity style={{width:110, height:44, marginLeft:20}}><Button color={'darkorchid'} title='Generate'></Button></TouchableOpacity>
-   <TextInput
+   <TouchableOpacity
+   style={{width:110, height:44, marginLeft:20}}><Button color={'darkorchid'} onPress={() => fetchData()}  title='Generate'></Button></TouchableOpacity>
+   <TextInput 
           placeholder="enter image url"
           placeholderTextColor={"white"}
           keyboardAppearance="default"
@@ -108,10 +133,12 @@ function App(): JSX.Element {
 </View>
 
 <Image
-           source={require('./img/stitch.jpg')}
+           source={{uri: image ?? ""}}
            resizeMode="contain"
            style={styles.image}
+           id='stitch'
          ></Image>
+
 
          
 <View style={{flex:4, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start", marginTop:40}} > 
