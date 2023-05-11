@@ -21,6 +21,10 @@ import {
   TouchableOpacity,
   useColorScheme,
   View,
+  Keyboard,
+   Platform,
+    KeyboardAvoidingView, 
+    TouchableWithoutFeedback,
 } from 'react-native';
 
 import {
@@ -68,11 +72,13 @@ function App(): JSX.Element {
   
 
   return (
+
+    <ScrollView>
     <View style={{flex: 1, backgroundColor:'black'}}>
-      <View style={{flex: 1, backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start'}} /> 
+      <View style={{flex: 1, marginTop:10, backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start'}} /> 
       <Text style={{color:'blue', fontSize:17, backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start', marginLeft:15}}>{'\t'}Back</Text>     
    
-      <View style={{flex: 2, backgroundColor: 'black', flexDirection:"row", alignContent:'center', justifyContent:'center'}} /> 
+      <View style={{flex: 2, marginTop:80, backgroundColor: 'black', flexDirection:"row", alignContent:'center', justifyContent:'center'}} /> 
       <Text style={[styles.sectionTitle,
       {color:'blueviolet', backgroundColor: 'black', flexDirection:"row", alignContent:'center', justifyContent:'center', marginLeft: 40, marginBottom:50, marginTop:-15},]
       }>{'\t'}Discord pic generator</Text>     
@@ -85,16 +91,18 @@ function App(): JSX.Element {
           keyboardAppearance="default"
           style={styles.placeholder}
         ></TextInput>
+        
 </View>
 
 
-<View style={{ backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} >
-  <Text style={{fontSize:15, color:'mediumslateblue', backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start", justifyContent:'flex-start', marginLeft:19, marginBottom:20}}>Choose effect:</Text>
-  <TouchableOpacity style={{width:40, height:40, marginLeft:13, marginTop:-10}}><Button color={'slateblue'} title='1'></Button></TouchableOpacity>
-  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:-10}}><Button color={'slateblue'} title='2'></Button></TouchableOpacity>
-  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:-10}}><Button color={'slateblue'} title='3'></Button></TouchableOpacity>
-  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:-10}}><Button color={'slateblue'} title='4'></Button></TouchableOpacity>
-  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:-10}}><Button color={'slateblue'} title='5'></Button></TouchableOpacity>
+
+<View style={{ marginBottom:10, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start"}} >
+  <Text style={{fontSize:15, color:'mediumslateblue', backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start", justifyContent:'flex-start', marginLeft:19, marginBottom:20, marginTop:20}}>Choose effect:</Text>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:13,marginTop:15,}}><Button color={'slateblue'} title='1'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} title='2'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} title='3'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} title='4'></Button></TouchableOpacity>
+  <TouchableOpacity style={{width:40, height:40, marginLeft:15, marginTop:15}}><Button color={'slateblue'} title='5'></Button></TouchableOpacity>
 
 
 </View>
@@ -118,13 +126,20 @@ function App(): JSX.Element {
 
 
 <View style={{flex:5, backgroundColor: 'black', flexDirection:"row", alignContent:"center", justifyContent:"center"}} > 
-   <TouchableOpacity style={{width:110, height:44, marginRight:20}}><Button color={'slateblue'} title='Download'></Button></TouchableOpacity>
+   <TouchableOpacity style={{width:110, height:44, marginRight:20, marginTop:30}}><Button color={'slateblue'} title='Download'></Button></TouchableOpacity>
    
 </View>
 
 
 
      </View>
+
+<View style={{width:'100%', height:80, backgroundColor:'black'}}>
+
+</View>
+
+     </ScrollView>
+
     
   );
 };
@@ -169,6 +184,7 @@ const styles = StyleSheet.create({
    // marginTop: 300,
     //backgroundColor: "red"
   },
+ 
 });
 
 export default App;
