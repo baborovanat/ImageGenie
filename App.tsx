@@ -6,13 +6,19 @@
  */
 
 import React from 'react';
-
+import qs from 'qs-native';
+import  {Mailer} from 'react-native-mail';
+ 
+import {CameraRoll} from "@react-native-camera-roll/camera-roll";
 import  { Component, useEffect, useState} from "react";
 import RNFetchBlob from "rn-fetch-blob";
+//import RNFS from 'reacvt-native-fs';
 import type {PropsWithChildren} from 'react';
 import {
   Button,
   Image,
+  Alert,
+  Linking,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -30,6 +36,7 @@ import {
     ImageBackgroundComponent,
     TextInputChangeEventData,
     NativeSyntheticEvent,
+    PermissionsAndroid
 } from 'react-native';
 
 import {
@@ -75,7 +82,109 @@ function App(): JSX.Element {
   const [posts, setPosts] = useState<any>();
   const [image, setImage] = useState<string>();
   const [message, setMessage] = useState<string>();
+  const [strSendEmail, setSendEmail] = useState<string>();
+  const [generate_path, setGeneratePath] = useState<string>();
+  const [generate_image, setGenerateImage] = useState<string>();
+  
 
+  const downloadGallery = async function() {
+    let imageurl = message? message: "";
+    let indexName1: number = imageurl? imageurl.lastIndexOf('/') : 0;
+    let indexName2: number = imageurl? imageurl.lastIndexOf('?') : 0;
+    let imageName = imageurl?.substring(indexName1,indexName2);
+    imageName = imageName.replace('.jpeg', '.png');
+    let dirs = RNFetchBlob.fs.dirs;
+    let path = Platform.OS == 'ios' ? dirs['MainBundleDir'] + imageName : dirs.PictureDir + imageName;
+    console.log(path);
+    
+    var base64code = image?.split("data:png;base64,")[1] ? image?.split("data:png;base64,")[1] : "";
+    console.log("base64code:");
+    //console.log(base64code);
+
+    await RNFetchBlob.fs.writeFile(path, base64code, 'base64');
+    console.log("Success Download:" );
+    setGeneratePath(path);
+    setGenerateImage(imageName);
+    // if(Platform.OS == 'android'){
+    //   RNFetchBlob.config({
+    //     fileCache: true,
+    //     appendExt: 'jpeg',
+    //     indicator: true,
+    //     IOSBackgroundTask: true,
+    //     path: path,
+    //     addAndroidDownloads : {
+    //       useDownloadManager : true,
+    //       notification: true,
+    //       path: path,
+    //       description: 'Image'
+    //     }
+    //   }).fetch("GET", imageurl).then(res => {
+    //     console.log(res, 'Complete Download');
+    //     setGeneratePath(path);
+    //     setGenerateImage(imageName);
+    //   });
+    // } 
+    // else {
+    //    CameraRoll.saveToCameraRoll(imageurl);
+    // }
+  }
+
+  const sendEmail = async function() {
+    try{
+      // let permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+      // await PermissionsAndroid.request(permission);
+      // Promise.resolve();
+
+      // const dirs = RNFetchBlob.fs.dirs;
+      // let externalPath = dirs.DCIMDir + generate_image;
+      // console.log(generate_path);
+      // console.log(externalPath);
+      // await RNFetchBlob.fs.cp(generate_path!!, externalPath).then((result)=>{
+      //   console.log("File has been saved to: " + result);
+      // }).catch(error => console.log("cp error", error));
+      Mailer.mail({
+        subject: 'Edit Picture',
+        recipients:['natya099@gmail.com'],
+        ccRecipients:['natya099@gmail.com'],
+        bccRecipients:['natya099@gmail.com'],
+        body:'Hello',
+        isHTML: false,
+        attachments:[{
+          path:generate_path!!,
+          type:'png'
+        }]
+      }, (error, event) => {
+        Alert.alert(error, event);
+      });
+    }catch(error){
+      Promise.reject(error);
+    }    
+    // let fromAddress : string = 'natya099@gmail.com';
+    // let toAdress = strSendEmail;
+    // let url = `mailto:${toAdress}`;
+    // const query = qs.stringify({
+    //   subject:fromAddress,
+    //   body: "Send Picture Generate",
+    //   attachment:qs.stringify( {        
+    //     path : generate_path ? generate_path : "",
+    //     type : 'jpeg',
+    //     name : generate_image ? generate_image : "",
+        
+    //   })
+    // });
+    
+    // url += `?${query}`;
+    // const canOpen = await Linking.canOpenURL(url);
+
+    // if(!canOpen){
+    //   throw new Error(url);
+    // }
+    // await Linking.openURL(url);
+    // // .then(()=> {
+    // //   console.log("Send email successfullly");
+    // // })
+
+  }
   const fetchData = async function () {
     RNFetchBlob.fetch("POST",'https://v1.api.amethyste.moe/generate/sharpen', 
    {
@@ -240,18 +349,20 @@ function App(): JSX.Element {
 
          
 <View style={{flex:4, backgroundColor: 'black', flexDirection:"row", alignContent:"flex-start", marginTop:40}} > 
-   <TouchableOpacity style={{width:77, height:44, marginLeft:20}}><Button color={'mediumslateblue'} title='Send'></Button></TouchableOpacity>
+   <TouchableOpacity style={{width:77, height:44, marginLeft:20}}><Button onPress={()=>sendEmail()} color={'mediumslateblue'} title='Send'></Button></TouchableOpacity>
    <TextInput
           placeholder="enter email"
           placeholderTextColor={"white"}
           keyboardAppearance="default"
+          value={strSendEmail}
+         onChangeText={(string) => setSendEmail(string)}
           style={styles.placeholder}
         ></TextInput>
 </View>
 
 
 <View style={{flex:5, backgroundColor: 'black', flexDirection:"row", alignContent:"center", justifyContent:"center"}} > 
-   <TouchableOpacity style={{width:110, height:44, marginRight:20, marginTop:30}}><Button color={'slateblue'} title='Download'></Button></TouchableOpacity>
+   <TouchableOpacity style={{width:110, height:44, marginRight:20, marginTop:30}}><Button color={'slateblue'} onPress={()=>downloadGallery()} title='Download'></Button></TouchableOpacity>
    
 </View>
 
