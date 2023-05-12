@@ -36,7 +36,8 @@ import {
     ImageBackgroundComponent,
     TextInputChangeEventData,
     NativeSyntheticEvent,
-    PermissionsAndroid
+    PermissionsAndroid,
+    BackHandler
 } from 'react-native';
 
 import {
@@ -301,7 +302,7 @@ function App(): JSX.Element {
     <ScrollView>
     <View style={{flex: 1, backgroundColor:'black'}}>
       <View style={{flex: 1, marginTop:10, backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start'}} /> 
-      <Text style={{color:'blue', fontSize:17, backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start', marginLeft:15}}>{'\t'}Back</Text>     
+      <Text style={{color:'blue', fontSize:17, backgroundColor: 'black', flexDirection:"row", alignContent:'flex-start', justifyContent:'flex-start', marginLeft:15}} onPress={() => BackHandler.exitApp()}>{'\t'}Back</Text>     
    
       <View style={{flex: 2, marginTop:80, backgroundColor: 'black', flexDirection:"row", alignContent:'center', justifyContent:'center'}} /> 
       <Text style={[styles.sectionTitle,
